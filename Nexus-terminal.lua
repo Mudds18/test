@@ -1,6 +1,8 @@
--- NEXUS REMOTE SPAMMER | FULLY WORKING | ALL FIXES | ARCADE FONT | CORNERS FIXED
+-- NEXUS REMOTE SPAMMER | FULLY WORKING | ALL FIXES | ARCADE FONT | + COPY EZ KEY BUTTON
 local CORRECT_KEY = "nexus2026"
 local ACCESS_DURATION = 86400
+-- ✅ LÄNK TILL KOPIERINGSKNAPPEN
+local EZ_KEY_LINK = "https://lootdest.org/s?ZY16brPV"
 
 getgenv().TestRunning = false
 if getgenv().TesterUI then pcall(function() getgenv().TesterUI:Destroy() end) end
@@ -33,7 +35,7 @@ local FONT = Enum.Font.Arcade
 local TWEEN_COLOR = TweenInfo.new(0.35, Enum.EasingStyle.Sine)
 local TWEEN_SIZE  = TweenInfo.new(0.25, Enum.EasingStyle.Quad)
 local TWEEN_FADE  = TweenInfo.new(0.4, Enum.EasingStyle.Quad)
-local MAIN_CORNER_RADIUS = 4 -- ✅ FIX: Matchar main:ens curve
+local MAIN_CORNER_RADIUS = 4
 
 -- EXAKTA KNAPP-FÄRGER
 local BTN_COLORS = {
@@ -164,9 +166,23 @@ local function TweenProp(o,p,v,i) ts:Create(o,i or TWEEN_COLOR,{[p]=v}):Play() e
 
 -- TOGGLE
 local tog = Instance.new("TextButton")
-tog.Size=UDim2.new(0,40,0,40) tog.Position=UDim2.new(0.92,0,0.05,0) tog.BackgroundColor3=BG tog.Text="💀" tog.Font=FONT tog.TextScaled=true tog.Active=true tog.Draggable=true tog.Visible=false tog.Parent=sg
+tog.Size=UDim2.new(0,40,0,40) tog.Position=UDim2.new(0.92,0,0.05,0) tog.BackgroundColor3=BG 
+tog.Text="" tog.Active=true tog.Draggable=true tog.Visible=false tog.Parent=sg
 Instance.new("UICorner",tog).CornerRadius=UDim.new(0,6)
 local togs=Instance.new("UIStroke",tog) togs.Thickness=1
+
+-- EYE ICON FÖR TOGGLE
+local eyeIcon = Instance.new("ImageLabel")
+eyeIcon.Name = "EyeIcon"
+eyeIcon.Size = UDim2.new(0, 24, 0, 24)
+eyeIcon.Position = UDim2.new(0.5, -12, 0.5, -12)
+eyeIcon.BackgroundTransparency = 1
+eyeIcon.ScaleType = Enum.ScaleType.Fit
+eyeIcon.Parent = tog
+local ICON_OPEN = "rbxassetid://15496694259"
+local ICON_CLOSED = "rbxassetid://15496693587"
+eyeIcon.Image = ICON_OPEN
+eyeIcon.ImageColor3 = SET.Colors[SET.Color].Main
 
 -- MAIN
 local main = Instance.new("Frame")
@@ -174,13 +190,12 @@ main.Size=UDim2.new(0,0,0,0) main.Position=UDim2.new(0.03,0,0.15,0) main.AnchorP
 Instance.new("UICorner",main).CornerRadius=UDim.new(0,MAIN_CORNER_RADIUS)
 local mains=Instance.new("UIStroke",main) mains.Thickness=1 mains.Transparency=0.5
 
--- ✅ FIX: CORNERS SITTER PERFEKT PÅ CURVEN NU
+-- FIXADE CORNERS
 local Corners={}
 local CORNER_SIZE = 18
 local function makeCorner(posX, posY, rot)
     local c=Instance.new("Frame") 
     c.Size=UDim2.new(0,CORNER_SIZE,0,CORNER_SIZE) 
-    -- Flyttar in hörnen med exakt 4px så de inte sticker ut utanför curven
     local offsetX = posX==0 and MAIN_CORNER_RADIUS or -(CORNER_SIZE + MAIN_CORNER_RADIUS)
     local offsetY = posY==0 and MAIN_CORNER_RADIUS or -(CORNER_SIZE + MAIN_CORNER_RADIUS)
     c.Position=UDim2.new(posX, offsetX, posY, offsetY)
@@ -191,8 +206,8 @@ local function makeCorner(posX, posY, rot)
     local v=Instance.new("Frame") v.Size=UDim2.new(0,2,0,CORNER_SIZE) v.BackgroundColor3=SET.Colors[SET.Color].Main v.Parent=c
     table.insert(Corners,{H=h,V=v})
 end
-makeCorner(0,0,0)   -- Övre vänstra
-makeCorner(1,1,180) -- Nedre högra
+makeCorner(0,0,0)
+makeCorner(1,1,180)
 
 -- HEADER
 local hdr=Instance.new("Frame") hdr.Size=UDim2.new(1,-10,0,24) hdr.Position=UDim2.new(0,5,0,5) hdr.BackgroundTransparency=1 hdr.Parent=main
@@ -244,7 +259,7 @@ local function startCountdown(total)
     end)
 end
 
--- KEY UI
+-- ✅ NYCKEL UI MED KOPIERINGSKNAPP
 local KeyUI=Instance.new("Frame") KeyUI.Size=UDim2.new(0,0,0,0) KeyUI.Position=UDim2.new(0.5,0,0.5,0) KeyUI.AnchorPoint=Vector2.new(0.5,0.5) KeyUI.BackgroundColor3=BG KeyUI.BackgroundTransparency=1 KeyUI.Active=true KeyUI.Draggable=true KeyUI.Parent=sg
 Instance.new("UICorner",KeyUI).CornerRadius=UDim.new(0,6)
 local ks=Instance.new("UIStroke",KeyUI) ks.Thickness=1.2 ks.Color=SET.Colors[SET.Color].Dim ks.Transparency=0.5
@@ -255,6 +270,50 @@ Instance.new("UICorner",kI).CornerRadius=UDim.new(0,4)
 local kis=Instance.new("UIStroke",kI) kis.Thickness=1 kis.Color=SET.Colors[SET.Color].Dim
 local kS=Instance.new("TextLabel",KeyUI) kS.Size=UDim2.new(1,-20,0,16) kS.Position=UDim2.new(0,10,0,115) kS.BackgroundTransparency=1 kS.Text="" kS.TextColor3=TXTDIM kS.Font=FONT kS.TextScaled=true
 
+-- ✅ NY: COPY EZ KEY KNAPP (MATCHAR KEY UI TEMAT EXAKT)
+local copyBtn = Instance.new("TextButton")
+copyBtn.Name = "CopyEzKey"
+copyBtn.Size = UDim2.new(1, -30, 0, 32) -- Samma bredd som nyckelrutan
+copyBtn.Position = UDim2.new(0, 15, 0, 137) -- Precis under status-texten
+copyBtn.BackgroundColor3 = BGDARK -- Samma mörka bakgrund som input
+copyBtn.BackgroundTransparency = 0.2
+copyBtn.Text = "[ COPY EZ KEY ]"
+copyBtn.TextColor3 = SET.Colors[SET.Color].Main -- Tematets huvudfärg
+copyBtn.Font = FONT -- Samma Arcade font
+copyBtn.TextScaled = true
+copyBtn.Parent = KeyUI
+Instance.new("UICorner", copyBtn).CornerRadius = UDim.new(0, 4) -- Samma rundade hörn som input
+local copyStroke = Instance.new("UIStroke")
+copyStroke.Thickness = 1 -- Samma tjocklek som inputens stroke
+copyStroke.Color = SET.Colors[SET.Color].Dim -- Samma stroke-färg som input
+copyStroke.Transparency = 0.5
+copyStroke.Parent = copyBtn
+
+-- Hover-effekter (samma som övriga knappar i skriptet)
+copyBtn.MouseEnter:Connect(function()
+    TweenProp(copyBtn, "BackgroundTransparency", 0)
+    TweenProp(copyStroke, "Transparency", 0)
+end)
+copyBtn.MouseLeave:Connect(function()
+    TweenProp(copyBtn, "BackgroundTransparency", 0.2)
+    TweenProp(copyStroke, "Transparency", 0.5)
+end)
+
+-- Kopiera länk vid klick + bekräftelsenotis
+copyBtn.MouseButton1Click:Connect(function()
+    local ok = pcall(function()
+        setclipboard(EZ_KEY_LINK) -- Kopierar länken till urklipp
+    end)
+    if ok then
+        Notify("Link copied to clipboard!", SET.Colors[SET.Color].Main)
+        copyBtn.Text = "[ COPIED! ]"
+        task.delay(1.5, function() if copyBtn.Parent then copyBtn.Text = "[ COPY EZ KEY ]" end end)
+    else
+        Notify("Copy failed", ERR_COL)
+    end
+end)
+-- ✅ SLUT PÅ KOPIERINGSKNAPP
+
 -- OPEN MAIN
 local function openMainUI(tl)
     TweenProp(KeyUI,"BackgroundTransparency",1,TWEEN_FADE) TweenProp(KeyUI,"Size",UDim2.new(0,0,0,0),TWEEN_FADE) task.wait(0.45) if KeyUI then KeyUI:Destroy() end
@@ -264,12 +323,23 @@ local function openMainUI(tl)
     Notify("Nexus loaded", SET.Colors.GREEN.Main)
 end
 
--- TOGGLE
+-- TOGGLE CLICK MED ÖGON-ICON BYTE
 local uiOpen=false
 tog.MouseButton1Click:Connect(function()
     uiOpen=not uiOpen
-    if uiOpen then tog.TextColor3=SET.Colors[SET.Color].Main main.Visible=true TweenProp(main,"Size",UDim2.new(0,SET.Width,0,SET.Height),TWEEN_SIZE) TweenProp(main,"BackgroundTransparency",0,TWEEN_FADE)
-    else tog.TextColor3=TXTDIM TweenProp(main,"Size",UDim2.new(0,0,0,0),TWEEN_SIZE) TweenProp(main,"BackgroundTransparency",1,TWEEN_FADE) task.delay(0.3,function() if not uiOpen then main.Visible=false end end) end
+    if uiOpen then 
+        eyeIcon.Image = ICON_OPEN
+        eyeIcon.ImageColor3 = SET.Colors[SET.Color].Main
+        main.Visible=true 
+        TweenProp(main,"Size",UDim2.new(0,SET.Width,0,SET.Height),TWEEN_SIZE) 
+        TweenProp(main,"BackgroundTransparency",0,TWEEN_FADE)
+    else 
+        eyeIcon.Image = ICON_CLOSED
+        eyeIcon.ImageColor3 = TXTDIM
+        TweenProp(main,"Size",UDim2.new(0,0,0,0),TWEEN_SIZE) 
+        TweenProp(main,"BackgroundTransparency",1,TWEEN_FADE) 
+        task.delay(0.3,function() if not uiOpen then main.Visible=false end end) 
+    end
 end)
 
 -- VERIFY KEY
@@ -294,6 +364,14 @@ local function ApplySettings(tw)
     if tw then TweenProp(main,"Size",UDim2.new(0,SET.Width,0,SET.Height),TWEEN_SIZE) else main.Size=UDim2.new(0,SET.Width,0,SET.Height) end
     content.Size=UDim2.new(1,-10,0,SET.Height-121)
     TweenProp(togs,"Color",C) TweenProp(mains,"Color",D) TweenProp(hl,"BackgroundColor3",D) TweenProp(ttl,"TextColor3",C) TweenProp(timerLabel,"TextColor3",C) TweenProp(bot,"TextColor3",C)
+    eyeIcon.ImageColor3 = uiOpen and C or TXTDIM
+    -- Uppdaterar kopieringsknappens färg om temat byts innan access
+    if copyBtn and copyBtn.Parent then
+        copyBtn.TextColor3 = C
+        copyStroke.Color = D
+        ks.Color = D
+        kis.Color = D
+    end
     for _,c in pairs(Corners) do TweenProp(c.H,"BackgroundColor3",C) TweenProp(c.V,"BackgroundColor3",C) end
     for _,d in pairs(tabs) do local a=d.Btn.BackgroundTransparency<0.3 TweenProp(d.Btn,"TextColor3",a and C or TXTDIM) TweenProp(d.Stroke,"Color",a and C or D) end
 end
@@ -412,8 +490,9 @@ wipe.MouseButton1Click:Connect(function()
     getgenv().NexusTimerLoop=false getgenv().TestRunning=false TweenProp(main,"Size",UDim2.new(0,0,0,0),TWEEN_SIZE) TweenProp(main,"BackgroundTransparency",1,TWEEN_FADE) task.wait(0.3) sg:Destroy() getgenv().TesterUI=nil
 end)
 
+-- START (Key UI är nu 280x190 för att passa kopieringsknappen)
 local hasAccess,timeLeft=checkAccess()
 if hasAccess then openMainUI(timeLeft)
-else KeyUI.Visible=true TweenProp(KeyUI,"Size",UDim2.new(0,280,0,150),TWEEN_SIZE) TweenProp(KeyUI,"BackgroundTransparency",0,TWEEN_FADE) end
+else KeyUI.Visible=true TweenProp(KeyUI,"Size",UDim2.new(0,280,0,190),TWEEN_SIZE) TweenProp(KeyUI,"BackgroundTransparency",0,TWEEN_FADE) end
 ApplySettings(false)
-print("✅ NEXUS LADDAD + ALLA FIXAR KLARA")
+print("✅ NEXUS LADDAD + COPY EZ KEY KNAPP")
