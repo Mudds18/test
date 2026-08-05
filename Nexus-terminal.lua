@@ -167,7 +167,7 @@ local function TweenProp(o,p,v,i) ts:Create(o,i or TWEEN_COLOR,{[p]=v}):Play() e
 -- TOGGLE
 local tog = Instance.new("TextButton")
 tog.Size=UDim2.new(0,40,0,40) tog.Position=UDim2.new(0.92,0,0.05,0) tog.BackgroundColor3=BG 
-tog.Text="" tog.Active=true tog.Draggable=true tog.Visible=false tog.Parent=sg
+tog.Text="💀" tog.Active=true tog.Draggable=true tog.Visible=false tog.Parent=sg
 Instance.new("UICorner",tog).CornerRadius=UDim.new(0,6)
 local togs=Instance.new("UIStroke",tog) togs.Thickness=1
 
