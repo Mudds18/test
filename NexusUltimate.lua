@@ -104,7 +104,7 @@ end
 local function SAFE_SETCLIPBOARD(text)return pcall(function() setclipboard(text) end)end
 
 -- ✅ DEV BYPASS (auto-skips key system for your testing)
-getgenv().NEXUS_DEV_BYPASS = false -- Set to false to re-enable key system
+getgenv().NEXUS_DEV_BYPASS = true -- Set to false to re-enable key system
 
 -- ✅ GLOBAL ERROR LOGGER
 local function LOG_ERR(msg)
