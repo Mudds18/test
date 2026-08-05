@@ -15,7 +15,7 @@ local ACCESS = 86400
 local EZKEY = "https://lootdest.org/s?ZY16brPV" -- Auto-skipped if broken
 
 -- ⬇⬇⬇ PASTE YOUR LOADSTRINGS BELOW ⬇⬇⬇
-local REMOTE_LOADSTRING = "" -- 📥 REMOTE SCRIPT HERE
+local REMOTE_LOADSTRING = "loadstring(game:HttpGet("https://raw.githubusercontent.com/Mudds18/test/refs/heads/main/Nexus-terminal.lua"))()" -- 📥 REMOTE SCRIPT HERE
 local LOCAL_LOADSTRING  = "" -- 📥 LOCAL SCRIPT HERE
 
 -- 🎮 ADD UP TO 30 GAMES HERE! (YOUR ORIGINAL LIST KEPT)
