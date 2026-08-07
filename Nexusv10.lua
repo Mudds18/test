@@ -516,8 +516,8 @@ local function BuildMainUI()
         Page.BackgroundTransparency = 1
         Page.BackgroundColor3 = THEME.BG
         Page.ScrollBarThickness = 4
-        Page.ScrollBarColor3 = THEME.ACCENT
-        Page.ScrollBarTransparency = 0.4
+        pcall(function() Page.ScrollBarColor3 = THEME.ACCENT end)
+pcall(function() Page.ScrollBarTransparency = 0.4 end)
         Page.CanvasSize = UDim2.new(0,0,0,0)
         Page.Visible = I == 1
         Page.Parent = Main
