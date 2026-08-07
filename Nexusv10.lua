@@ -510,17 +510,15 @@ local function BuildMainUI()
 
         TabButtons[Name] = {Btn = Tab, Line = Indicator}
 
-        local Page = Instance.new("ScrollingFrame")
-        Page.Size = UDim2.new(1, -24, 1, 0)
-        Page.Position = UDim2.new(0,12,0,116)
-        Page.BackgroundTransparency = 1
-        Page.BackgroundColor3 = THEME.BG
-        Page.ScrollBarThickness = 4
-        pcall(function() Page.ScrollBarColor3 = THEME.ACCENT end)
-pcall(function() Page.ScrollBarTransparency = 0.4 end)
-        Page.CanvasSize = UDim2.new(0,0,0,0)
-        Page.Visible = I == 1
-        Page.Parent = Main
+            local Page = Instance.new("ScrollingFrame")
+    Page.Size = UDim2.new(1, -24, 1, 0)
+    Page.Position = UDim2.new(0, 12, 0, 116)
+    Page.BackgroundTransparency = 1
+    Page.BackgroundColor3 = THEME.BG
+    Page.ScrollBarThickness = 4
+    Page.CanvasSize = UDim2.new(0, 0, 0, 0)
+    Page.Visible = I == 1
+    Page.Parent = Main
 
         -- SMOOTH SCROLL EFFECT
         Page.MouseEnter:Connect(function() Tween(Page, ANIM.NORMAL, {ScrollBarTransparency = 0}) end)
