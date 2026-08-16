@@ -112,7 +112,7 @@ end
 --==================================================
 
 local Gui = Instance.new("ScreenGui")
-Gui.Name = "VampireAimlock"
+Gui.Name = "NexusAimlock"
 Gui.ResetOnSpawn = false
 Gui.IgnoreGuiInset = true
 Gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
@@ -159,7 +159,7 @@ local Subtitle = Instance.new("TextLabel")
 Subtitle.Size = UDim2.new(1, -30, 0, 18)
 Subtitle.Position = UDim2.fromOffset(15, 38)
 Subtitle.BackgroundTransparency = 1
-Subtitle.Text = "🦇 NIGHT HUNTER  •  AIM SYSTEM"
+Subtitle.Text = "🦇 NEXUS-DRACULA  •  AIM SYSTEM"
 Subtitle.TextColor3 = COLORS.Muted
 Subtitle.TextSize = 8
 Subtitle.Font = Enum.Font.GothamMedium
