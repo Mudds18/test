@@ -131,6 +131,10 @@ Panel.BackgroundColor3 = COLORS.Panel
 Panel.BorderSizePixel = 0
 Panel.ClipsDescendants = true
 Panel.Parent = Gui
+local UIScale = Instance.new("UIScale")
+UIScale.Name = "UIScale"
+UIScale.Scale = 0.55
+UIScale.Parent = Panel
 
 Corner(Panel, 14)
 Stroke(Panel, COLORS.Blood, 1.5)
@@ -1276,6 +1280,16 @@ MakeBloodDrip(92, 35)
 MakeBloodDrip(137, 22)
 MakeBloodDrip(181, 30)
 MakeBloodDrip(218, 18)
+MakeBloodDrip(12, 25)
+MakeBloodDrip(35, 35)
+MakeBloodDrip(68, 28)
+MakeBloodDrip(82, 18)
+MakeBloodDrip(110, 32)
+MakeBloodDrip(125, 25)
+MakeBloodDrip(153, 35)
+MakeBloodDrip(170, 20)
+MakeBloodDrip(198, 30)
+MakeBloodDrip(235, 25)
 
 --==================================================
 -- 🩸 RANDOM BLOOD PARTICLES
