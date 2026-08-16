@@ -133,7 +133,7 @@ Panel.ClipsDescendants = true
 Panel.Parent = Gui
 local UIScale = Instance.new("UIScale")
 UIScale.Name = "UIScale"
-UIScale.Scale = 0.55
+UIScale.Scale = 0.80
 UIScale.Parent = Panel
 
 Corner(Panel, 14)
